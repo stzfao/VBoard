@@ -1,32 +1,29 @@
 import React, { Component } from "react";
-import {v4 as uuid } from 'uuid';
 import { connect } from "react-redux";
 import { addCard } from '../actions/cardActions'
-import Modal from "./Modal";
-
+import { Button, Modal, ModalHeader, ModalBody, Form, Input, FormGroup, Label } from 'reactstrap'
 
 class CardModal extends Component {
     state = {
         modal: false,
         title: ''
-    }
+    };
 
     toggle = () => {
         this.setState({
             modal: !this.state.modal
         });
-    }
+    };
 
     onChange = e => {
-        this.setState({ [e.target.title]: e.target.value });
-    }
+        this.setState({ [e.target.name]: e.target.value });
+    };
 
 
     onSubmit = e => {
         e.preventDefault();
 
         const newCard = {
-            id: uuid(),
             title: this.state.title
         }
 
@@ -40,13 +37,23 @@ class CardModal extends Component {
     render() {
         return (
             <div>
-                <button className="btn bg-slate-100 m-4 px-6 py-4 rounded-full" onClick={this.toggle}>
+                <Button color="dark" style={{ marginBottom: '2rem' }} onClick={this.toggle}>
                     Add Card
-                </button>
-
-                <Modal isOpen={this.state.modal} toggle={this.toggle} onSubmit={this.onSubmit} onChange={this.onChange} state={this.state}>
+                </Button>
+                <Modal isOpen={this.state.modal} toggle={this.toggle}>
+                    <ModalHeader toggle={this.toggle}>
+                        Add Card
+                    </ModalHeader>
+                    <ModalBody>
+                        <Form onSubmit={this.onSubmit}>
+                            <FormGroup>
+                                <Label for="card">Card Title</Label>
+                                <Input type="text" name="title" id="card" placeholder="Add Card Title" onChange={this.onChange}/>
+                                <Button color="dark" style={{ marginTop: '2rem' }} block>Save</Button>
+                            </FormGroup>
+                        </Form>
+                    </ModalBody>
                 </Modal>
-
             </div>
         );
     }
@@ -56,4 +63,4 @@ const mapStateToProps = state => ({
     card: state.card
 });
 
-export default connect(mapStateToProps, {addCard})(CardModal);
+export default connect(mapStateToProps, { addCard })(CardModal);

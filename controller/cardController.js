@@ -15,7 +15,6 @@ const addCard = async(req, res, next) => {
     try{
         const newCard = new Card({
             title: req.body.title,
-            description: req.body.description
         });
         newCard.save()
             .then(card => res.json(card));

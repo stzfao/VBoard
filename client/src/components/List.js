@@ -18,41 +18,24 @@ class List extends Component {
     render() {
         const { cards } = this.props.card;
         return (
-            // <section>
-            //     <div className='m-4'>
-            //         <ul className='w-auto text-sm font-medium text-gray-900 bg-white rounded-lg border border-gray-200'>
-            //             {cards.map(({ id, title }) => (
-            //                 <li className='flex justify items-center py-2 px-4 w-full rounded-t-lg border-b border-gray-200 dark:border-gray-600'>
-            //                     <div className='m-1'>
-            //                         {id}
-            //                     </div>
-            //                     <div className='m-1'>
-            //                         {title}
-            //                     </div>
-            //                     <button className='btn m-2 p-3 bg-indigo-300 rounded-lg' onClick={this.onDeleteClick.bind(this, id)}>Some Operation</button>
-            //                 </li>
-            //             ))}
-
-            //         </ul>
-            //     </div>
-            // </section>
             <Container>
                 <ListGroup>
                     <TransitionGroup className="list">
-                        {cards.map(({ id, title }) => (
-                            <CSSTransition key={id} timeout={500} classNames="fade">
-                                <ListGroupItem>
-                                        {title}
+                        {cards.map(({ _id, title }) => (
+                            <CSSTransition key={_id} timeout={500} classNames="fade">
+                                <ListGroupItem >
+                                    {title}
+                                    <Button onClick={this.onDeleteClick.bind(this, _id)} className="mx-4">
+                                        &times;
+                                    </Button>
                                 </ListGroupItem>
-                                <Button onClick={this.onDeleteClick.bind(this, id)}>
-                                    Some Operation &times;
-                                </Button>
+
                             </CSSTransition>
                         ))}
                     </TransitionGroup>
                 </ListGroup>
-                <Button>
-
+                <Button className='m-4 px-6' style={{borderRadius: '40px'}}>
+                            IDK
                 </Button>
             </Container>
         );

@@ -17,7 +17,7 @@ class AppNavbar extends Component {
   render() {
     return (
       <div>
-        <Navbar expand="md" fixed="top" className="m-5 ">
+        <Navbar expand="md"  className="m-5 mb-5">
           <Container className='' fluid>
             <Nav>
               <NavbarBrand href="/" className='flex-grow-1'><span className='m-2'><FaDeezer/> </span>vboard</NavbarBrand>
@@ -25,12 +25,12 @@ class AppNavbar extends Component {
             <Collapse isOpen={this.state.isOpen} navbar>
               <Nav className='ml-auto justify-content-end flex-grow-1 ' navbar>
                 {[
-                  ['Home', '/'],
-                  ['Tests', '/testlink'],
-                  ['Contact', '/contact'],
-                  ['About', '/about'],
-                ].map(([title, url]) => (
-                  <NavItem className='mx-3 '>
+                  ['Home', '/', 'home'],
+                  ['Tests', '/testlink', 'tests'],
+                  ['Contact', '/contact','contact'],
+                  ['About', '/about','about'],
+                ].map(([title, url, uniqueKey]) => (
+                  <NavItem className='mx-3 ' key={uniqueKey}>
                     <NavLink href={url}>
                       {title}
                     </NavLink>

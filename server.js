@@ -10,7 +10,7 @@ app.use(bodyParser.json());
 
 // <-----------setting up routes----------->
 const cards = require('./routes/cardRouter');
-app.use('/card', cards);
+app.use('/cards', cards);
 
 // <-----------connect to DB----------->
 const db = require('./config/keys').MONGO_URI;

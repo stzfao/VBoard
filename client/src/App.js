@@ -4,6 +4,9 @@ import AppNavbar from './components/AppNavbar'
 import { Provider } from 'react-redux';
 import List from './components/List';
 import store from './store';
+import './App.css';
+import { Container } from 'reactstrap';
+import CardModal from './components/CardModal';
 
 class App extends Component {
   render() {
@@ -11,7 +14,10 @@ class App extends Component {
       <Provider store={store}>
         <div className="App">
           <AppNavbar />
-          <List/>
+          <Container>
+            <CardModal />
+            <List />
+          </Container>
         </div>
       </Provider>
     );

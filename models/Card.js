@@ -6,7 +6,7 @@ const CardSchema = new Schema({
         type: String,
         required: true
     },
-    description: String,
+    // description: String,
     // list:{
     //     type: Schema.Types.ObjectId,
     //     ref: "list",

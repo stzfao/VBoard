@@ -1,33 +1,33 @@
-import { v4 as uuid } from 'uuid';
-import { GET_CARDS, ADD_CARD, DELETE_CARD } from '../actions/types'
+import { GET_CARDS, ADD_CARD, DELETE_CARD, CARDS_LOADING } from '../actions/types'
 
 
 const initialState = {
-    cards: [
-        { id: uuid(), title: 'Test1' },
-        { id: uuid(), title: 'Test2' },
-        { id: uuid(), title: 'Test3' },
-        { id: uuid(), title: 'Test4' },
-        { id: uuid(), title: 'Test5' },
-        { id: uuid(), title: 'Test6' }
-    ]
+    cards: [],
+    loading: false
 };
 
 export default function (state = initialState, action) {
     switch (action.type) {
         case GET_CARDS:
             return {
-                ...state
+                ...state,
+                cards: action.payload,
+                loading: false
             };
         case DELETE_CARD:
             return {
                 ...state,
-                cards: state.cards.filter(card => card.id !== action.payload)
+                cards: state.cards.filter(card => card._id !== action.payload)
             };
         case ADD_CARD:
             return {
                 ...state,
-                cards: [action.payload, ...state.items]
+                cards: [action.payload, ...state.cards]
+            };
+        case CARDS_LOADING:
+            return{
+                ...state,
+                loading: true
             };
         default:
             return state;
